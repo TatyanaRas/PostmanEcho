@@ -1,14 +1,18 @@
 
 package ru.netology.postman;
 
+import io.restassured.matcher.ResponseAwareMatcher;
+import io.restassured.response.Response;
 import org.junit.jupiter.api.Test;
 
+//import static com.google.common.base.Predicates.equalTo;
 import static io.restassured.RestAssured.given;
+import static org.hamcrest.Matchers.equalTo;
 
-    public class PostmanTest {
+public class PostmanTest {
 
            @Test
-        void shouldReturnDemoAccounts() {
+        void shouldPost() {
                // Given - When - Then
 // Предусловия
                given()
@@ -21,8 +25,8 @@ import static io.restassured.RestAssured.given;
                        .then()
                        .log().all()
                        .statusCode(200)
-                       .body(/* --> ваша проверка здесь <-- */)
+                       .body("data", (org.hamcrest.Matchers.equalTo("some data")))
                ;
         }
     }
-}
+
